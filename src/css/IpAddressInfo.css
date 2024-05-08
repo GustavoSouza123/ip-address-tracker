@@ -1,5 +1,6 @@
 .info {
     position: absolute;
+    z-index: 999;
     bottom: -80px;
     width: 1110px;
     height: 160px;

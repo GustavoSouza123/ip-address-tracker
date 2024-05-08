@@ -3,7 +3,7 @@ import "../css/Footer.css";
 
 function Footer() {
     return (
-        <footer class="attribution">
+        <footer className="attribution">
             Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
             Coded by <a href="https://www.gustavo-souza.com" target="_blank">Gustavo Souza</a>.
         </footer>
