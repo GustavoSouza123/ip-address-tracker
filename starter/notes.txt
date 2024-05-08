@@ -7,3 +7,10 @@ Location
 Timezone
     UTC <!-- add offset value dynamically using the API -->
 ISP
+
+
+
+APIs:
+
+IP Geolocation API by IPify: https://geo.ipify.org/
+LeafletJS: https://leafletjs.com/
