@@ -17,9 +17,13 @@ form .input {
     font-size: 18px;
 }
 
+form .input::placeholder {
+    color: var(--dark-grey);
+}
+
 form .submit {
     width: 60px;
-    background-color: var(--very-dark-grey);
+    background-color: #000;
     border: none;
     border-top-right-radius: var(--border-radius);
     border-bottom-right-radius: var(--border-radius);
