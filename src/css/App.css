@@ -7,6 +7,7 @@
 :root {
     --very-dark-grey: hsl(0, 0%, 17%);
     --dark-grey: hsl(0, 0%, 59%);
+    --border-radius: 15px;
 }
 
 body {

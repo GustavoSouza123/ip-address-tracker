@@ -1,0 +1,27 @@
+form {
+    width: 555px;
+    height: 60px;
+    border-radius: var(--border-radius);
+    background: #fff;
+    display: flex;
+    margin-bottom: 50px;
+}
+
+form .input {
+    width: 100%;
+    border: none;
+    outline: none;
+    border-top-left-radius: var(--border-radius);
+    border-bottom-left-radius: var(--border-radius);
+    padding: 0 25px;
+    font-size: 18px;
+}
+
+form .submit {
+    width: 60px;
+    background-color: var(--very-dark-grey);
+    border: none;
+    border-top-right-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    outline: none;
+}

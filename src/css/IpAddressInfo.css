@@ -1,0 +1,6 @@
+.info {
+    width: 1110px;
+    height: 160px;
+    background-color: #fff;
+    border-radius: var(--border-radius);
+}
