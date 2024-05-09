@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../css/Tracker.css";
 import Search from "./Search";
 import IpAddressInfo from "./IpAddressInfo";
@@ -7,6 +7,14 @@ import Map from "./Map";
 
 function Tracker() {
     const [data, setData] = useState('');
+    const [myIpAddress, setMyIpAddress] = useState('');
+
+    useEffect(() => {
+        fetch('https://api.ipify.org?format=json')
+            .then(res => res.json())
+            .then(data => setMyIpAddress(data.ip))
+            .catch(err => console.log(err))
+    }, []);
 
     async function getIpLocation(ipParam) {
         const ip = ipParam || document.querySelector('.input').value;
@@ -23,6 +31,10 @@ function Tracker() {
             console.error('there was an error processing you request', err)
         }
     }
+
+    // displaying my local ip address info on first load
+    // disabled to not request from api every time and run out of request credits
+    // getIpLocation(myIpAddress);
 
     return (
         <div className="container">
