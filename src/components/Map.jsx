@@ -1,9 +1,40 @@
 import React from "react";
 import "../css/Map.css";
+import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
+
+const libraries = ['places'];
+const mapContainerStyle = {
+    width: '100%',
+    height: 'calc(100vh - 280px)',
+};
+const center = {
+    lat: 7.2905715, // default latitude
+    lng: 80.6337262, // default longitude
+};
 
 function Map() {
+    const { isLoaded, loadError } = useLoadScript({
+        googleMapsApiKey: 'AIzaSyCiC0gh2jLvKY30FQDM-rFSFzeD91m8flw',
+        libraries,
+    });
+
+    if(loadError) {
+        return <div>Error loading maps</div>
+    }
+    if(!isLoaded) {
+        return <div>Loading maps</div>
+    }
+
     return (
-        <div id="map"></div>
+        <div id="map">
+            <GoogleMap
+                mapContainerStyle={mapContainerStyle}
+                zoom={10}
+                center={center}
+            >
+                <Marker position={center} />
+            </GoogleMap>
+        </div>
     );
 }
 
