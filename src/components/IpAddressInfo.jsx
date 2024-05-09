@@ -1,7 +1,7 @@
 import React from "react";
 import "../css/IpAddressInfo.css";
 
-function IpAddressInfo() {
+function IpAddressInfo({ data }) {
     return (
         <div className="info">
             <div className="ip-address">

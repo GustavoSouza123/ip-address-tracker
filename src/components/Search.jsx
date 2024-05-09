@@ -1,12 +1,10 @@
 import React from "react";
 import "../css/Search.css"
 
-
-function Search() {
-    function handleSubmit(event) {
-        const ip = document.querySelector('.input').value;
-        console.log('ip:', ip);
-        event.preventDefault();
+function Search({ onSubmit }) {
+    function handleSubmit(e) {
+        e.preventDefault();
+        onSubmit();
     }
 
     return (
