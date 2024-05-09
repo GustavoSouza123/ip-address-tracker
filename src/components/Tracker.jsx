@@ -1,10 +1,13 @@
 import React from "react";
+import { useState } from "react";
 import "../css/Tracker.css";
 import Search from "./Search";
 import IpAddressInfo from "./IpAddressInfo";
 import Map from "./Map";
 
 function Tracker() {
+    const [data, setData] = useState('');
+
     async function handleSubmit() {
         const ip = document.querySelector('.input').value;
         const apiKey = 'at_eOp5vIu8GZbLd41oyvdi2FCnHmK3K';
@@ -14,7 +17,8 @@ function Tracker() {
             if(!response.ok) {
                 throw new Error('there was an error processing you request');
             }
-            const data = await response.json();
+            const responseData = await response.json();
+            setData(responseData);
         } catch(err) {
             console.error('there was an error processing you request', err)
         }
@@ -25,7 +29,11 @@ function Tracker() {
             <div className="top">
                 <h1>IP Address Tracker</h1>
                 <Search onSubmit={handleSubmit} />
-                <IpAddressInfo info={data} />
+                <IpAddressInfo info={{
+                    ip: data.ip,
+                    location: data.location,
+                    isp: data.isp
+                }} />
             </div>
             <Map />
         </div>
