@@ -8,8 +8,8 @@ import Map from "./Map";
 function Tracker() {
     const [data, setData] = useState('');
 
-    async function handleSubmit() {
-        const ip = document.querySelector('.input').value;
+    async function getIpLocation(ipParam) {
+        const ip = ipParam || document.querySelector('.input').value;
         const apiKey = 'at_eOp5vIu8GZbLd41oyvdi2FCnHmK3K';
 
         try {
@@ -28,11 +28,13 @@ function Tracker() {
         <div className="container">
             <div className="top">
                 <h1>IP Address Tracker</h1>
-                <Search onSubmit={handleSubmit} />
-                <IpAddressInfo info={{
+                <Search onSubmit={getIpLocation} />
+                <IpAddressInfo info={data != '' && {
                     ip: data.ip,
-                    location: data.location,
-                    isp: data.isp
+                    country: data.location.country,
+                    region: data.location.region,
+                    timezone: data.location.timezone,
+                    isp: data.isp,
                 }} />
             </div>
             <Map />
