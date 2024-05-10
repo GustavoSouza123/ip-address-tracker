@@ -10,11 +10,19 @@ function Tracker() {
     const [myIpAddress, setMyIpAddress] = useState('');
 
     useEffect(() => {
-        fetch('https://api.ipify.org?format=json')
-            .then(res => res.json())
-            .then(data => setMyIpAddress(data.ip))
-            .catch(err => console.log(err))
+        getMyIpAddress();
     }, []);
+
+    async function getMyIpAddress() {
+        try {
+            const response = await fetch('https://api.ipify.org?format=json');
+            if(!response.ok) throw new Error('there was an error fetching your local ip address');
+            const myIp = await response.json();
+            setMyIpAddress(myIp.ip);
+        } catch(err) {
+            console.log('there was an error fetching your local ip address')
+        }
+    }
 
     async function getIpLocation(ipParam) {
         const ip = ipParam || document.querySelector('.input').value;
@@ -22,9 +30,7 @@ function Tracker() {
 
         try {
             const response = await fetch(`https://geo.ipify.org/api/v2/country?apiKey=${apiKey}&ipAddress=${ip}`);
-            if(!response.ok) {
-                throw new Error('there was an error processing you request');
-            }
+            if(!response.ok) throw new Error('there was an error processing you request');
             const responseData = await response.json();
             setData(responseData);
         } catch(err) {
