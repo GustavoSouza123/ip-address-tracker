@@ -8,12 +8,14 @@ import Map from "./Map";
 function Tracker() {
     const [data, setData] = useState('');
     const [myIpAddress, setMyIpAddress] = useState('');
+    const [coordinates, setCoordinates] = useState({});
 
     useEffect(() => {
         getMyIpAddress();
         // displaying my local ip address info on first load
         // disabled to not request from api every time and run out of request credits
         // getIpLocation(myIpAddress);
+        getCoordinates('São Paulo');
     }, []);
 
     async function getMyIpAddress() {
@@ -23,7 +25,7 @@ function Tracker() {
             const resIp = await response.json();
             setMyIpAddress(resIp.ip);
         } catch(err) {
-            console.log('there was an error fetching your local ip address')
+            console.error('there was an error fetching your local ip address')
         }
     }
     
@@ -36,8 +38,21 @@ function Tracker() {
             if(!response.ok) throw new Error('there was an error processing you request');
             const responseData = await response.json();
             setData(responseData);
+            getCoordinates(responseData.location.region); /* not working here */
         } catch(err) {
             console.error('there was an error processing you request', err)
+        }
+    }
+
+    async function getCoordinates(address) {
+        const geoApiKey = 'AIzaSyBZuPdZMbRf0C87FplCamGh8V5VtQNoyLg'; 
+        try {
+            const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${geoApiKey}`);
+            if(!response.ok) throw new Error('there was an error fetching the coordinates of your address');
+            const resCoordinates = await response.json();
+            setCoordinates(resCoordinates.results[0].geometry.location);
+        } catch(err) {
+            console.error('there was an error fetching the coordinates of your address');
         }
     }
 
@@ -54,7 +69,7 @@ function Tracker() {
                     isp: data.isp,
                 }} />
             </div>
-            <Map address={data != '' && {region: data.location.region}} />
+            <Map coordinates={{...coordinates}} />
         </div>
     );
 }
