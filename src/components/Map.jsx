@@ -1,5 +1,4 @@
 import React from "react";
-import "../css/Map.css";
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
 
 const libraries = ['places'];

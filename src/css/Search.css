@@ -1,5 +1,6 @@
 form {
-    width: 555px;
+    width: 90%;
+    max-width: 555px;
     height: 60px;
     border-radius: var(--border-radius);
     background: #fff;
@@ -28,4 +29,10 @@ form .submit {
     border-top-right-radius: var(--border-radius);
     border-bottom-right-radius: var(--border-radius);
     outline: none;
+}
+
+@media only screen and (max-width: 450px) {
+    form .input::placeholder {
+        font-size: 16px;
+    }
 }

@@ -4,8 +4,8 @@ import "../css/Footer.css";
 function Footer() {
     return (
         <footer className="attribution">
-            Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-            Coded by <a href="https://www.gustavo-souza.com" target="_blank">Gustavo Souza</a>.
+            <span>Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.</span>
+            <span>Coded by <a href="https://www.gustavo-souza.com" target="_blank">Gustavo Souza</a>.</span>
         </footer>
     );
 }

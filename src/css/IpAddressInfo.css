@@ -2,7 +2,8 @@
     position: absolute;
     z-index: 999;
     bottom: -80px;
-    width: 1110px;
+    width: 90%;
+    max-width: 1110px;
     height: 160px;
     background-color: #fff;
     border-radius: var(--border-radius);
@@ -52,4 +53,38 @@
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     white-space: wrap;
+}
+
+@media only screen and (max-width: 1024px) {
+    .info {
+        max-width: 325px;
+        flex-direction: column;
+        height: 300px;
+        bottom: -220px;
+        padding: 25px 0;
+    }
+
+    .info > div {
+        width: 100%;
+        border: none;
+        align-items: center;
+    }
+
+    .info > div:not(:last-child) {
+        margin-bottom: 25px;
+    }
+
+    .info .title,
+    .info .data {
+        position: static;
+    }
+
+    .info .title {
+        margin-bottom: 5px;
+        font-size: 12px;
+    }
+
+    .info .data {
+        font-size: 20px;
+    }
 }
