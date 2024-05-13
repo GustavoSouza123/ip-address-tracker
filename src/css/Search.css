@@ -29,6 +29,12 @@ form .submit {
     border-top-right-radius: var(--border-radius);
     border-bottom-right-radius: var(--border-radius);
     outline: none;
+    cursor: pointer;
+    transition: .2s;
+}
+
+form .submit:hover {
+    background-color: #3f3f3f;
 }
 
 @media only screen and (max-width: 450px) {

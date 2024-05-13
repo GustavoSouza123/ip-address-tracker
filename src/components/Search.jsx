@@ -1,5 +1,6 @@
 import React from "react";
-import "../css/Search.css"
+import "../css/Search.css";
+import arrow from "../assets/icon-arrow.svg";
 
 function Search({ onSubmit }) {
     function handleSubmit(e) {
@@ -11,7 +12,7 @@ function Search({ onSubmit }) {
         <form onSubmit={handleSubmit}>
             <input type="text" name="ip" placeholder="Search for any IP address or domain" className="input" />
             <button type="submit" className="submit">
-                <img src="./src/assets/icon-arrow.svg" alt="arrow icon" />
+                <img src={arrow} alt="arrow icon" />
             </button>
         </form>
     );

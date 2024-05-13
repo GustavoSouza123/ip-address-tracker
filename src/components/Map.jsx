@@ -1,5 +1,6 @@
 import React from "react";
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
+import location from "../assets/icon-location.svg";
 
 const libraries = ['places'];
 const mapContainerStyle = {
@@ -18,6 +19,10 @@ function Map({ coordinates }) {
         lng: coordinates.lng || '', // default longitude
     };
 
+    const mapOptions = {
+        disableDefaultUI: true
+    };
+
     if(loadError) {
         return <div>Error loading maps</div>
     }
@@ -31,8 +36,9 @@ function Map({ coordinates }) {
                 mapContainerStyle={mapContainerStyle}
                 zoom={7}
                 center={center}
+                options={mapOptions}
             >
-                <Marker position={center} />
+                <Marker position={center} icon={location} />
             </GoogleMap>
         </div>
     );
