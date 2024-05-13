@@ -1,9 +1,10 @@
 # IP Address Tracker
 
-This is a Frontent Mentor challenge. See a demo on [my portfolio website](https://gustavo-souza.com/)
+This is a Frontent Mentor challenge. See a demo on [my portfolio website](https://gustavo-souza.com/).
 
-Frontend Mentor challenge: [IP address tracker](https://www.frontendmentor.io/challenges/ip-address-tracker-I8-0yYAH0)
+Frontend Mentor challenge: [IP address tracker](https://www.frontendmentor.io/challenges/ip-address-tracker-I8-0yYAH0).
 
+Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
 
 # Frontend Mentor - IP address tracker solution
 
@@ -21,7 +22,6 @@ This is a solution to the [IP address tracker challenge on Frontend Mentor](http
   - [Continued development](#continued-development)
   - [Useful resources](#useful-resources)
 - [Author](#author)
-- [Acknowledgments](#acknowledgments)
 
 ## Overview
 
@@ -53,56 +53,65 @@ Users should be able to:
 - Responsiveness
 - [Github Pages](https://pages.github.com/)
 
-
-
-
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+This is the first React app I made totally by myself.
 
-To see how you can add code snippets, see below:
+The things I found most challenging were specifically related to how React works. I could implement these things in vanilla Javascript, for example.
 
-```html
-<h1>Some HTML code I'm proud of</h1>
+For example. One thing I wanted to do was pass an object (from an API request) as a prop to another component to display its values on the child component. But when I did this I came accross the following error:
+
+![alt text](./src/assets/image.png)
+
+After some research up I found that React doesn't know what to render when provided with an object. So I have to use the data from the object in order to decide how to create the component to display. So the code ended up like this:
+
+```jsx
+// passing the prop to the child component on Tracker.jsx
+return (
+    <IpAddressInfo info={data != '' && {
+        ip: data.ip,
+        country: data.location.country,
+        region: data.location.region,
+        timezone: data.location.timezone,
+        isp: data.isp,
+    }} />
+);
 ```
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
-```js
-const proudOfThisFunc = () => {
-  console.log('🎉')
-}
+
+```jsx
+// on the child component (IpAddressInfo.jsx)
+const ip = info.ip || '-';
+return (
+    <div className="ip-address">
+        <div className="title">IP Address</div>
+        <div className="data">
+            <p title={ip}>{ip}</p>
+        </div>
+    </div>
+);
 ```
 
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
+Another thing I'd like to highlight was that when passing the object as a prop, I first checked if the `data` variable (which is a state variable that holds the data returned from the API request) was not empty, or in other words, the request had been made to the API and was successful.
 
-**Note: Delete this note and the content within this section and replace with your own learnings.**
+I did this because I was getting another error when passing the object without making the request, which makes sense if you think about it.
 
 ### Continued development
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
+In the next React apps I build I want to continue refining my skills with the React library and getting used to some aspects of the library, since the thinking process when coding has to be different that when coding with vanilla Javascript or another framework.
 
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
+Specifically, I want to continue getting used to how React manages state (which I find interesting but I found that many people don't like it), like when I have to lift state up to a parent component, and things like that.
+
+One thing I like about this project is that it helped me practice making requests to fetch data from APIs, since to complete this project it's necessary to use two APIs, one for the IP location and other for the map. I feel more comfortable with this process now, since there are many ways to do it and it sounds confusing and overwhelming at first.
+
+In the next project I also want to start working with some tool to make my life easier with CSS, like Sass and/or Tailwind. Another thing that I want to start testing is these packages like styled-components which have ready-to-use components that facilitate coding and styling.
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
-
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
+- [React docs](https://react.dev/) - This documentation has been helping me a lot to understand some specific concepts and practice them.
+- [Deploying a React + Vite application](https://www.linkedin.com/pulse/deploying-react-vite-application-mangesh-ahire-p6auf/) - This is a straightforward article which helped me understand how to deploy a React app.
 
 ## Author
 
 - Website - [Gustavo Souza](https://gustavo-souza.com/)
 - Frontend Mentor - [@GustavoSouza123](https://www.frontendmentor.io/profile/GustavoSouza123)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
-
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
-
-## Acknowledgments
-
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
-
-**Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**
+- Twitter - [@GustavoSouza456](https://twitter.com/GustavoSouza456)
